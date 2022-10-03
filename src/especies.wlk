@@ -1,40 +1,39 @@
 class EspecieFauna {
 	const property pesoReferencia
-	const animalesDeUnaEspecie=[]
-	
-    method agregarAnimal(lista){
-    	animalesDeUnaEspecie.addAll(lista)
-    }
+	var property locomocion
+	var property coeficiente
 }
+
 
 class EspecieFlora {
 	const property alturaReferencia=10
-	const plantasDeUnaEspecie=[]
-	
-	method agregarPlanta(lista){
-    	plantasDeUnaEspecie.addAll(lista)
-    }
 }
+
+
 
 class Animal {
 	var property peso
-	var property locomocion
 	var especie
+	var habitat
 	
-	
-	/*method biomasa()= (self.peso()**2)/*/
-	method esGrande()=self.peso()>(especie.pesoReferencia()*2)
-	method esPequenio()=self.peso()<(especie.pesoReferencia()/2)
-	method esMediano()= not self.esGrande() and not self.esPequenio()
-	
+	method biomasa()= (self.peso()**2)/especie.coeficiente()
+	method esGrande()= self.peso()>(especie.pesoReferencia()*2)
+	method esPequenio()= self.peso()<(especie.pesoReferencia()/2)
+	method esMediano()= not self.esGrande() and not self.esPequenio()	
 }
+
+
 
 class Planta {
 	var property altura
 	var especie
+	var habitat
 	
-	method biomasa()= (self.altura()*2).max(especie.alturaReferencia())
-	method esGrande()= self.altura()> especie.alturaReferencia()
+	method biomasa()= (self.altura()*2).min(especie.alturaReferencia())
+	method esGrande()= self.altura()>= especie.alturaReferencia()
+	method esPequenio()= self.altura()<(especie.alturaReferencia())
+	method esMediano()= not self.esGrande() and not self.esPequenio()
+	
 }
 
 object volar {method seSalva(animal) = animal.esGrande()}

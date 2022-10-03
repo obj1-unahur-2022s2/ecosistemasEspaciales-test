@@ -1,0 +1,13 @@
+import especies.*
+
+// auto-generated at 03/10/2022 16:38:25
+test "exported test from REPL session" {
+	
+	const felinos=new EspecieFauna()
+	const tigre=new Animal(peso=60,locomocion=correr,especie=felinos)
+	animal.count({a => a.especie()==felinos})
+	Animal.count({a => a.especie()==felinos})
+	pesoReferencia=40
+	EspecieFauna.pesoReferencia(40)
+	
+}

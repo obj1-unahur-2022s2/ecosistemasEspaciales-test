@@ -3,9 +3,8 @@ import especies.*
 object reserva {
 	const habitats = []
 	
-	method agregarHabitat(unHabitat){
-		habitats.addAll(unHabitat)
-	}
+	
+	
 	
 	
 }
@@ -13,9 +12,7 @@ object reserva {
 class Habitat {
 	const seresVivos = []
 	
-	method agregarSerVivo(unSerVivo){
-		seresVivos.addAll(unSerVivo)
-	}
+	
 	
 	
 }
