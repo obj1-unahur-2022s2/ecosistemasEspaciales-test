@@ -1,3 +1,5 @@
+import reservaNatural.*
+
 class EspecieFauna {
 	const property pesoReferencia
 	var property locomocion
@@ -19,7 +21,11 @@ class Animal {
 	method biomasa()= (self.peso()**2)/especie.coeficiente()
 	method esGrande()= self.peso()>(especie.pesoReferencia()*2)
 	method esPequenio()= self.peso()<(especie.pesoReferencia()/2)
-	method esMediano()= not self.esGrande() and not self.esPequenio()	
+	method esMediano()= not self.esGrande() and not self.esPequenio()
+	method seIncendia(){
+		  especie.locomocion().seSalva(self) and self.peso()-(self.peso()*0.1)
+		  habitat.quitarSerVivo(!especie.locomocion().seSalva(self))
+	}	
 }
 
 
@@ -33,6 +39,10 @@ class Planta {
 	method esGrande()= self.altura()>= especie.alturaReferencia()
 	method esPequenio()= self.altura()<(especie.alturaReferencia())
 	method esMediano()= not self.esGrande() and not self.esPequenio()
+	method seIncendia(){
+		if (self.esPequenio()){habitat.quitarSerVivo(self)}
+	    else self.altura()-5
+	}
 	
 }
 
