@@ -1,13 +1,113 @@
 import especies.*
+import reservaNatural.*
 
-// auto-generated at 03/10/2022 16:38:25
-test "exported test from REPL session" {
-	
-	const felinos=new EspecieFauna()
-	const tigre=new Animal(peso=60,locomocion=correr,especie=felinos)
-	animal.count({a => a.especie()==felinos})
-	Animal.count({a => a.especie()==felinos})
-	pesoReferencia=40
-	EspecieFauna.pesoReferencia(40)
+
+  
+  describe "modelado de las especie Fauna"{
+  	    
+        const felinos= new EspecieFauna(pesoReferencia=70,locomocion=correr,coeficiente=2)
+        const aves=new EspecieFauna(pesoReferencia=3,locomocion=volar,coeficiente=0.5)
+        const arboles=new EspecieFlora()
+        const helechos=new EspecieFlora()
+        const selva=new Habitat(seresVivos=[])
+        const sabana=new Habitat(seresVivos=[])
+        const llanura=new Habitat(seresVivos=[])
+        const montania=new Habitat(seresVivos=[])
+        const bosque=new Habitat(seresVivos=[])
+        
+       /*Felinos */
+        const tigreBebe=new Animal(peso=30,especie=felinos,habitat=selva)
+	    const leon=new Animal(peso=150,especie=felinos,habitat=sabana)
+	    const puma=new Animal(peso=70,especie=felinos,habitat=llanura)
+	    /*Aves */
+	    const condor=new Animal(peso=7,especie=aves,habitat=montania)
+	    const colibri=new Animal(peso=2,especie=aves,habitat=bosque)
+	    const buho=new Animal(peso=2.7,especie=aves,habitat=bosque)
+	    /*Arboles */
+	    const caoba=new Planta(altura=20,especie=arboles,habitat=selva)
+	    const acacia=new Planta(altura=9,especie=arboles,habitat=sabana)
+	    const sauce=new Planta(altura=10,especie=arboles,habitat=llanura)
+	     /*Hierbas */
+	    const colaDeCaballo=new Planta(altura=7,especie=helechos,habitat=bosque)
+	    const paco=new Planta(altura=2,especie=helechos,habitat=bosque)
+	    const helechoNavidenio=new Planta(altura=5,especie=helechos,habitat=bosque)
+       
+       
+        method initialize() {
+           reserva.agregarHabitats(selva)
+           reserva.agregarHabitats(sabana)
+           reserva.agregarHabitats(llanura)
+           reserva.agregarHabitats(montania)
+           reserva.agregarHabitats(bosque)
+           
+           habitat.agregarSerVivo(tigreBebe)
+           habitat.agregarSerVivo(leon)
+           habitat.agregarSerVivo(puma)
+           
+           habitat.agregarSerVivo(condor)
+           habitat.agregarSerVivo(colibri)
+           habitat.agregarSerVivo(buho)
+           
+           habitat.agregarSerVivo(caoba)
+           habitat.agregarSerVivo(acacia)
+           habitat.agregarSerVivo(sauce)
+           habitat.agregarSerVivo(colaDeCaballo)
+           habitat.agregarSerVivo(paco)
+           habitat.agregarSerVivo(helechoNavidenio)
+	      }
+         
+  
+       
+    test "animales felinos" {  
+	    assert.that(tigreBebe.esPequenio())
+	    assert.equals(450,tigreBebe.biomasa())
+	    assert.equals(correr,tigreBebe.locomocion())
+	    
+	    assert.that(leon.esGrande())
+	    assert.equals(11250,leon.biomasa())
+	    assert.equals(correr,leon.locomocion())
+	    
+	    assert.that(puma.esMediano())
+	    assert.equals(2450,puma.biomasa())
+	    assert.equals(correr,puma.locomocion())
+   }
+   
+   test "animales aves" {
+	    assert.that(condor.esGrande())
+	    assert.equals(98,condor.biomasa())
+	    assert.equals(volar,condor.locomocion())
+	    
+	    assert.that(colibri.esPequenio())
+	    assert.equals(8,colibri.biomasa())
+	    assert.equals(volar,colibri.locomocion())
+	    
+	    
+	    assert.that(buho.esMediano())
+	    assert.equals(14.58,buho.biomasa())
+	    assert.equals(volar,buho.locomocion())
+   }
+   
+   test "plantas arboles" {
+	    assert.that(caoba.esGrande())
+	    assert.equals(10,caoba.biomasa())
+	    
+	    assert.that(sauce.esMediano())
+	    assert.equals(10,sauce.biomasa())
+	      
+	    assert.that(acacia.esPequenio())
+	    assert.equals(10,acacia.biomasa())
+	   
+   }
+   
+   test "plantas helechos" {
+	    assert.that(colaDeCaballo.esPequenio())
+	    assert.equals(10,colaDeCaballo.biomasa())
+	    
+	    assert.notThat(paco.esGrande())
+	    assert.equals(4,paco.biomasa())
+	    
+	    assert.that(helechoNavidenio.esPequenio())
+	    assert.equals(10,helechoNavidenio.biomasa())
+   }
 	
 }
